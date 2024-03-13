@@ -25,6 +25,8 @@ class PlayState extends FlxState
 
 	override public function create()
 	{
+		Reg.pause = false;
+
 		player = new Player();
 
 		items = new FlxTypedGroup<FlxSprite>();
@@ -51,9 +53,12 @@ class PlayState extends FlxState
 	{
 		super.update(elapsed);
 
-		FlxG.collide(map, player);
-		FlxG.overlap(items, player, collideItems);
-		FlxG.overlap(enemies, player, collideEnemies);
+		if (player.alive)
+		{
+			FlxG.collide(map, player);
+			FlxG.overlap(items, player, collideItems);
+			FlxG.overlap(enemies, player, collideEnemies);
+		}
 
 		FlxG.collide(map, enemies);
 		FlxG.collide(enemies, enemies);

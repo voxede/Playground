@@ -42,11 +42,12 @@ class Enemy extends FlxSprite
 		{
 			move();
 
-			if (justTouched(FlxObject.WALL))
+			if (justTouched(WALL))
 				flipDirection();
 		}
 
-		super.update(elapsed);
+		if (!Reg.pause)
+			super.update(elapsed);
 	}
 
 	private function flipDirection()

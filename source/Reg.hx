@@ -5,4 +5,5 @@ class Reg
 	public static var lives:Int = 3;
 	public static var level = 1;
 	public static var time:Float = 300;
+	public static var pause:Bool = false;
 }

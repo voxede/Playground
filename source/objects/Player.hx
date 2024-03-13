@@ -3,6 +3,7 @@ package objects;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.math.FlxMath;
+import flixel.util.FlxTimer;
 
 class Player extends FlxSprite
 {
@@ -38,7 +39,9 @@ class Player extends FlxSprite
 
 	override public function update(elapsed:Float)
 	{
-		move();
+		if (!Reg.pause)
+			move();
+
 		animate();
 
 		super.update(elapsed);
@@ -81,7 +84,9 @@ class Player extends FlxSprite
 
 	private function animate()
 	{
-		if ((velocity.y <= 0) && (!isTouching(FLOOR)))
+		if (!alive)
+			animation.play("dead");
+		else if ((velocity.y <= 0) && (!isTouching(FLOOR)))
 			animation.play("jump");
 		else if (velocity.y > 0)
 			animation.play("fall");
@@ -102,5 +107,26 @@ class Player extends FlxSprite
 			velocity.y = JUMP_FORCE;
 		else
 			velocity.y = JUMP_FORCE / 2;
+	}
+
+	override public function kill()
+	{
+		if (alive)
+		{
+			alive = false;
+			velocity.set(0, 0);
+			acceleration.set(0, 0);
+			Reg.lives -= 1;
+			Reg.pause = true;
+			new FlxTimer().start(2.0, function(_)
+			{
+				acceleration.y = GRAVITY;
+				jump();
+			}, 1);
+			new FlxTimer().start(6.0, function(_)
+			{
+				FlxG.resetState();
+			});
+		}
 	}
 }
