@@ -5,6 +5,7 @@ import flixel.addons.editors.tiled.TiledObject;
 import flixel.addons.editors.tiled.TiledObjectLayer;
 import flixel.addons.editors.tiled.TiledTileLayer;
 import flixel.tile.FlxTilemap;
+import objects.Coin;
 import states.PlayState;
 
 class LevelLoader
@@ -34,5 +35,14 @@ class LevelLoader
 		}
 		else
 			trace("Player object layer not found");
+
+		if (tiledMap.getLayer("coins") != null)
+		{
+			var coinsLayer:TiledObjectLayer = cast tiledMap.getLayer("coins");
+			for (coin in coinsLayer.objects)
+				state.items.add(new Coin(coin.x, coin.y - 16));
+		}
+		else
+			trace("Coins object layer not found!");
 	}
 }

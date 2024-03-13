@@ -22,12 +22,11 @@ class PlayState extends FlxState
 	override public function create()
 	{
 		player = new Player();
+		items = new FlxTypedGroup<FlxSprite>();
 
 		LevelLoader.loadLevel(this, "playground");
 
 		add(player);
-
-		items = new FlxTypedGroup<FlxSprite>();
 		add(items);
 
 		FlxG.camera.follow(player, FlxCameraFollowStyle.PLATFORMER);
