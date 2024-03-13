@@ -36,6 +36,8 @@ class PlayState extends FlxState
 		player.acceleration.y = 420;
 		add(player);
 
+		var levelLoader:LevelLoader = new LevelLoader();
+
 		super.create();
 	}
 
