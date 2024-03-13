@@ -1,5 +1,6 @@
 package states;
 
+import Reg;
 import flixel.FlxCamera.FlxCameraFollowStyle;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -25,6 +26,11 @@ class PlayState extends FlxState
 
 	override public function create()
 	{
+		Reg.pause = false;
+		Reg.time = 300;
+
+		Reg.PS = this;
+
 		Reg.pause = false;
 
 		player = new Player();
@@ -62,6 +68,8 @@ class PlayState extends FlxState
 
 		FlxG.collide(map, enemies);
 		FlxG.collide(enemies, enemies);
+
+		updateTime(elapsed);
 	}
 
 	function collideItems(coin:Coin, player:Player)
@@ -72,5 +80,16 @@ class PlayState extends FlxState
 	function collideEnemies(enemy:Enemy, player:Player)
 	{
 		enemy.interact(player);
+	}
+
+	private function updateTime(elapsed:Float)
+	{
+		if (Reg.time > 0)
+			Reg.time -= elapsed;
+		else
+		{
+			Reg.time = 0;
+			player.kill();
+		}
 	}
 }

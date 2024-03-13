@@ -80,6 +80,9 @@ class Player extends FlxSprite
 
 		if ((velocity.y < 0) && (FlxG.keys.justReleased.C))
 			velocity.y = velocity.y * 0.5;
+
+		if (y > Reg.PS.map.health - height)
+			kill();
 	}
 
 	private function animate()
