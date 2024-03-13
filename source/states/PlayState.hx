@@ -19,15 +19,20 @@ class PlayState extends FlxState
 
 	public var items(default, null):FlxTypedGroup<FlxSprite>;
 
+	private var _hud:HUD;
+
 	override public function create()
 	{
 		player = new Player();
 		items = new FlxTypedGroup<FlxSprite>();
+		_hud = new HUD();
 
 		LevelLoader.loadLevel(this, "playground");
 
 		add(player);
 		add(items);
+
+		add(_hud);
 
 		FlxG.camera.follow(player, FlxCameraFollowStyle.PLATFORMER);
 		FlxG.camera.setScrollBoundsRect(0, 0, map.width, map.height, true);
