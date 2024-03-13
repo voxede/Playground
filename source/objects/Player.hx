@@ -1,3 +1,5 @@
+package objects;
+
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.math.FlxMath;

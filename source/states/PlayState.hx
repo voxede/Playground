@@ -1,4 +1,4 @@
-package;
+package states;
 
 import flixel.FlxCamera.FlxCameraFollowStyle;
 import flixel.FlxG;
@@ -6,6 +6,8 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.tile.FlxTilemap;
 import flixel.util.FlxColor;
+import objects.Player;
+import utils.LevelLoader;
 
 class PlayState extends FlxState
 {
