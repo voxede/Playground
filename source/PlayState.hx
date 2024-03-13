@@ -8,8 +8,9 @@ import flixel.util.FlxColor;
 
 class PlayState extends FlxState
 {
+	var player:Player;
 	var map:FlxTilemap;
-	var player:FlxSprite;
+
 	var mapData:Array<Int> = [
 		1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
 		1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
@@ -31,9 +32,7 @@ class PlayState extends FlxState
 		map.loadMapFromArray(mapData, 20, 12, AssetPaths.tiles__png, 16, 16);
 		add(map);
 
-		player = new FlxSprite(64, 0);
-		player.makeGraphic(16, 16, FlxColor.RED);
-		player.acceleration.y = 420;
+		player = new Player(64, 16);
 		add(player);
 
 		var levelLoader:LevelLoader = new LevelLoader();
