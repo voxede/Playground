@@ -1,14 +1,24 @@
 import flixel.addons.editors.tiled.TiledMap;
 import flixel.addons.editors.tiled.TiledTileLayer;
+import flixel.tile.FlxTilemap;
 
 class LevelLoader
 {
-	public function new()
+	public static function loadLevel(state:PlayState, level:String)
 	{
-		var tiledMap = new TiledMap("assets/data/playground.tmx");
+		var tiledMap = new TiledMap("assets/data/" + level + ".tmx");
 
 		var mainLayer:TiledTileLayer = cast tiledMap.getLayer("main");
+		var backLayer:TiledTileLayer = cast tiledMap.getLayer("back");
 
-		trace(mainLayer.tileArray.length);
+		state.map = new FlxTilemap();
+		state.map.loadMapFromArray(mainLayer.tileArray, tiledMap.width, tiledMap.height, AssetPaths.tiles__png, 16, 16, 1);
+
+		var backMap = new FlxTilemap();
+		backMap.loadMapFromArray(backLayer.tileArray, tiledMap.width, tiledMap.height, AssetPaths.tiles__png, 16, 16, 1);
+		backMap.solid = false;
+
+		state.add(backMap);
+		state.add(state.map);
 	}
 }
