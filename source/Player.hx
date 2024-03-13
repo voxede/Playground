@@ -66,5 +66,8 @@ class Player extends FlxSprite
 			else
 				maxVelocity.x = WALK_SPEED;
 		}
+
+		if ((velocity.y < 0) && (FlxG.keys.justReleased.C))
+			velocity.y = velocity.y * 0.5;
 	}
 }
