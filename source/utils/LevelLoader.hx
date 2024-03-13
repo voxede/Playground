@@ -6,6 +6,7 @@ import flixel.addons.editors.tiled.TiledObjectLayer;
 import flixel.addons.editors.tiled.TiledTileLayer;
 import flixel.tile.FlxTilemap;
 import objects.Coin;
+import objects.Enemy;
 import states.PlayState;
 
 class LevelLoader
@@ -29,6 +30,9 @@ class LevelLoader
 
 		for (coin in getLevelObjects(tiledMap, "coins"))
 			state.items.add(new Coin(coin.x, coin.y - 16));
+
+		for (enemy in getLevelObjects(tiledMap, "enemies"))
+			state.enemies.add(new Enemy(enemy.x, enemy.y - 16));
 
 		var playerPos:TiledObject = getLevelObjects(tiledMap, "player")[0];
 		state.player.setPosition(playerPos.x, playerPos.y - 16);

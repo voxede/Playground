@@ -67,7 +67,7 @@ class Player extends FlxSprite
 		if (velocity.y == 0)
 		{
 			if (FlxG.keys.justPressed.C && isTouching(FLOOR))
-				velocity.y = JUMP_FORCE;
+				jump();
 
 			if (FlxG.keys.pressed.X)
 				maxVelocity.x = RUN_SPEED;
@@ -94,5 +94,13 @@ class Player extends FlxSprite
 			else
 				animation.play("walk");
 		}
+	}
+
+	public function jump()
+	{
+		if (FlxG.keys.pressed.C)
+			velocity.y = JUMP_FORCE;
+		else
+			velocity.y = JUMP_FORCE / 2;
 	}
 }
