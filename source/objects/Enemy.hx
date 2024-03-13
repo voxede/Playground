@@ -18,16 +18,11 @@ class Enemy extends FlxSprite
 	{
 		super(x, y);
 
-		loadGraphic(AssetPaths.enemyA__png, true, 16, 16);
-		animation.add("walk", [0, 1, 2, 1], 12);
-		animation.add("dead", [3], 12);
-		animation.play("walk");
-
-		setSize(12, 12);
-		offset.set(2, 4);
-
 		acceleration.y = GRAVITY;
 		maxVelocity.y = FALLING_SPEED;
+
+		flipX = true;
+		_direction = -1;
 	}
 
 	override public function update(elapsed:Float)
@@ -56,10 +51,7 @@ class Enemy extends FlxSprite
 		_direction = -_direction;
 	}
 
-	private function move()
-	{
-		velocity.x = _direction * WALK_SPEED;
-	}
+	private function move() {}
 
 	public function interact(player:Player)
 	{

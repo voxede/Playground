@@ -6,6 +6,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.group.FlxGroup;
 import flixel.tile.FlxTilemap;
 import flixel.util.FlxColor;
 import objects.Coin;
@@ -24,6 +25,8 @@ class PlayState extends FlxState
 
 	private var _hud:HUD;
 
+	private var _entities:FlxGroup;
+
 	override public function create()
 	{
 		Reg.pause = false;
@@ -40,12 +43,15 @@ class PlayState extends FlxState
 
 		_hud = new HUD();
 
+		_entities = new FlxGroup();
+
 		LevelLoader.loadLevel(this, "playground");
 
 		add(player);
 
-		add(items);
-		add(enemies);
+		_entities.add(items);
+		_entities.add(enemies);
+		add(_entities);
 
 		add(_hud);
 
@@ -62,24 +68,22 @@ class PlayState extends FlxState
 		if (player.alive)
 		{
 			FlxG.collide(map, player);
-			FlxG.overlap(items, player, collideItems);
-			FlxG.overlap(enemies, player, collideEnemies);
+			FlxG.overlap(_entities, player, collideEntities);
 		}
 
-		FlxG.collide(map, enemies);
+		FlxG.collide(map, _entities);
 		FlxG.collide(enemies, enemies);
 
 		updateTime(elapsed);
 	}
 
-	function collideItems(coin:Coin, player:Player)
+	private function collideEntities(entity:FlxSprite, player:Player)
 	{
-		coin.collect();
-	}
+		if (Std.isOfType(entity, Coin))
+			(cast entity).collect();
 
-	function collideEnemies(enemy:Enemy, player:Player)
-	{
-		enemy.interact(player);
+		if (Std.isOfType(entity, Enemy))
+			(cast entity).interact(player);
 	}
 
 	private function updateTime(elapsed:Float)
