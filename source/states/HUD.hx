@@ -38,6 +38,11 @@ class HUD extends FlxSpriteGroup
 		_textWorld.alignment = FlxTextAlign.CENTER;
 		_textTime.alignment = FlxTextAlign.RIGHT;
 
+		forEachOfType(FlxText, function(member)
+		{
+			member.setFormat(AssetPaths.pixel_font__ttf, 8, FlxColor.WHITE, FlxTextBorderStyle.OUTLINE, 0xff005784);
+		});
+
 		_iconCoin = new FlxSprite(FlxG.width * 0.33 - 4, OFFSET + 10 + 4);
 		_iconCoin.loadGraphic("assets/images/hud.png", true, 8, 8);
 		_iconCoin.animation.add("coin", [0], 0);
