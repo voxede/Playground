@@ -26,7 +26,7 @@ class HUD extends FlxSpriteGroup
 
 	override public function update(elapsed:Float)
 	{
-		_textScore.text = "SCORE\n" + (Reg.score);
+		_textScore.text = "SCORE\n" + StringTools.lpad(Std.string(Reg.score), "0", 5);
 		super.update(elapsed);
 	}
 }
