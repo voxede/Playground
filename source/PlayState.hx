@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.tile.FlxTilemap;
@@ -41,5 +42,7 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		FlxG.collide(map, player);
 	}
 }
