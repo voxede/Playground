@@ -9,13 +9,13 @@ import flixel.util.FlxColor;
 
 class PlayState extends FlxState
 {
-	var player:Player;
+	public var player(default, null):Player;
 
 	public var map:FlxTilemap;
 
 	override public function create()
 	{
-		player = new Player(64, 16);
+		player = new Player();
 
 		LevelLoader.loadLevel(this, "playground");
 

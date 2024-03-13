@@ -1,4 +1,6 @@
 import flixel.addons.editors.tiled.TiledMap;
+import flixel.addons.editors.tiled.TiledObject;
+import flixel.addons.editors.tiled.TiledObjectLayer;
 import flixel.addons.editors.tiled.TiledTileLayer;
 import flixel.tile.FlxTilemap;
 
@@ -20,5 +22,14 @@ class LevelLoader
 
 		state.add(backMap);
 		state.add(state.map);
+
+		if (tiledMap.getLayer("player") != null)
+		{
+			var playerLayer:TiledObjectLayer = cast tiledMap.getLayer("player");
+			var playerPos:TiledObject = playerLayer.objects[0];
+			state.player.setPosition(playerPos.x, playerPos.y - 16);
+		}
+		else
+			trace("Player object layer not found");
 	}
 }

@@ -14,9 +14,9 @@ class Player extends FlxSprite
 
 	public var direction:Int = 1;
 
-	public function new(x:Float, y:Float)
+	public function new()
 	{
-		super(x, y);
+		super();
 		loadGraphic(AssetPaths.player__png, true, 16, 16);
 
 		animation.add("idle", [0]);
@@ -45,6 +45,9 @@ class Player extends FlxSprite
 	private function move()
 	{
 		acceleration.x = 0;
+
+		if (x < 0)
+			x = 0;
 
 		if (FlxG.keys.pressed.LEFT)
 		{
