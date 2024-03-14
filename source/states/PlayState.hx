@@ -58,6 +58,8 @@ class PlayState extends FlxState
 		FlxG.camera.follow(player, FlxCameraFollowStyle.PLATFORMER);
 		FlxG.camera.setScrollBoundsRect(0, 0, map.width, map.height, true);
 
+		openSubState(new IntroSubState(FlxColor.BLACK));
+
 		super.create();
 	}
 

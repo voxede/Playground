@@ -54,7 +54,7 @@ class IntroSubState extends FlxSubState
 
 		forEachOfType(FlxText, function(member)
 		{
-			member.setFormat(AssetPaths.pixel_font__ttf, 0, FlxColor.WHITE, FlxTextBorderStyle.OUTLINE, 0xff005748);
+			member.setFormat(AssetPaths.pixel_font__ttf, 8, FlxColor.WHITE, FlxTextBorderStyle.OUTLINE, 0xff005748);
 		});
 
 		_text.alignment = FlxTextAlign.CENTER;
