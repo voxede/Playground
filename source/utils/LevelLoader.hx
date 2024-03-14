@@ -35,7 +35,7 @@ class LevelLoader
 
 		for (enemy in getLevelObjects(tiledMap, "enemies"))
 		{
-			switch (enemy.type)
+			switch (enemy.name)
 			{
 				default:
 					state.enemies.add(new WalkEnemy(enemy.x, enemy.y - 16));

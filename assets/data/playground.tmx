@@ -28,6 +28,6 @@
  <objectgroup id="5" name="enemies">
   <object id="14" gid="8" x="304" y="208" width="16" height="16"/>
   <object id="15" gid="8" x="416" y="208" width="16" height="16"/>
-  <object id="16" gid="16" x="527.333" y="206.333" width="16" height="16"/>
+  <object id="16" name="spike" gid="16" x="527.333" y="206.333" width="16" height="16"/>
  </objectgroup>
 </map>
