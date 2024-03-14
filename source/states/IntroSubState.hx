@@ -9,6 +9,7 @@ import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.util.helpers.FlxRange;
+import openfl.utils.AssetManifest;
 
 class IntroSubState extends FlxSubState
 {
@@ -62,7 +63,10 @@ class IntroSubState extends FlxSubState
 		new FlxTimer().start(_waitToDisappear, function(_)
 		{
 			if (_gameOver)
-				System.exit(0);
+			{
+				Reg.lives = 2;
+				FlxG.switchState(new MenuState());
+			}
 			else
 				close();
 		}, 1);
