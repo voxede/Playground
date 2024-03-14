@@ -2,6 +2,7 @@ package states;
 
 import Reg;
 import flixel.FlxCamera.FlxCameraFollowStyle;
+import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -27,14 +28,21 @@ class PlayState extends FlxState
 
 	private var _entities:FlxGroup;
 
+	private var _gameCamera:FlxCamera;
+	private var _hudCamera:FlxCamera;
+
 	override public function create()
 	{
+		Reg.PS = this;
 		Reg.pause = false;
 		Reg.time = 300;
 
-		Reg.PS = this;
-
-		Reg.pause = false;
+		_gameCamera = new FlxCamera();
+		_hudCamera = new FlxCamera();
+		FlxG.cameras.reset(_gameCamera);
+		FlxG.cameras.add(_hudCamera);
+		_hudCamera.bgColor = FlxColor.TRANSPARENT;
+		FlxCamera.defaultCameras = [_gameCamera];
 
 		player = new Player();
 
@@ -42,6 +50,7 @@ class PlayState extends FlxState
 		enemies = new FlxTypedGroup<Enemy>();
 
 		_hud = new HUD();
+		_hud.setCamera(_hudCamera);
 
 		_entities = new FlxGroup();
 
